@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -257,11 +257,9 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -374,6 +372,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				PODS_PODFILE_DIR_PATH = /Users/mac/github/firebase_admob/ios;
+				PODS_ROOT = /Users/mac/github/firebase_admob/ios/Pods;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.firebaseAdmob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -511,6 +511,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				PODS_PODFILE_DIR_PATH = /Users/mac/github/firebase_admob/ios;
+				PODS_ROOT = /Users/mac/github/firebase_admob/ios/Pods;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.firebaseAdmob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -542,6 +544,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				PODS_PODFILE_DIR_PATH = /Users/mac/github/firebase_admob/ios;
+				PODS_ROOT = /Users/mac/github/firebase_admob/ios/Pods;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.firebaseAdmob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
