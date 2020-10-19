@@ -1,4 +1,7 @@
 PODS:
+  - Firebase/AdMob (6.34.0):
+    - Firebase/CoreOnly
+    - Google-Mobile-Ads-SDK (~> 7.63)
   - Firebase/Analytics (6.34.0):
     - Firebase/Core
   - Firebase/Core (6.34.0):
@@ -29,6 +32,9 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
+  - Google-Mobile-Ads-SDK (7.66.0):
+    - GoogleAppMeasurement (~> 6.0)
+    - GoogleUserMessagingPlatform (~> 1.1)
   - GoogleAppMeasurement (6.9.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/MethodSwizzler (~> 6.7)
@@ -37,6 +43,7 @@ PODS:
     - nanopb (~> 1.30906.0)
   - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
+  - GoogleUserMessagingPlatform (1.2.0)
   - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -64,7 +71,9 @@ PODS:
   - PromisesObjC (1.2.11)
 
 DEPENDENCIES:
+  - Firebase/AdMob
   - Firebase/Analytics
+  - Google-Mobile-Ads-SDK
 
 SPEC REPOS:
   trunk:
@@ -73,8 +82,10 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
     - nanopb
     - PromisesObjC
@@ -85,12 +96,14 @@ SPEC CHECKSUMS:
   FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  Google-Mobile-Ads-SDK: 7d7074359c040f5add4e0963bf860e14690060d0
   GoogleAppMeasurement: a6a3a066369828db64eda428cb2856dc1cdc7c4e
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
+  GoogleUserMessagingPlatform: c85530d930ba509583aa5a6d50a10aca22cf8502
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
 
-PODFILE CHECKSUM: dec79906fba3ff6ca5749e9ff04277fb9ae378a9
+PODFILE CHECKSUM: 6292f27363685d1461edfe0b47cfcdc3ad9bd93a
 
 COCOAPODS: 1.10.0.rc.1
