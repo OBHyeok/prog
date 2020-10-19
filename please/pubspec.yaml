@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_admob: ^0.10.0+2
+  shared_preferences: ^0.5.12
+#  soundpool: ^1.1.1
+  flutter_ringtone_player: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

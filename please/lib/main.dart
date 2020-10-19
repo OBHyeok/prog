@@ -2,6 +2,16 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/foundation.dart';
+
+import 'dart:async';
+
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+import 'dart:math' as math;
+
+
 
 void main() {
   runApp(MyApp());
