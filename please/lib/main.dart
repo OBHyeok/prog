@@ -151,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var _timer3string = '$_timer3min'+':'+'$_timer3sec';
 
     final _shadow_1 = BoxDecoration(
-      color: Colors.grey[300],
+      color: Colors.grey[200],
       borderRadius: BorderRadius.all(Radius.circular(50)),
       boxShadow: [
         BoxShadow(
@@ -169,17 +169,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final _shadow_2 = BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.all(Radius.circular(50)),
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.all(Radius.circular(30)),
         boxShadow: [
           BoxShadow(
               color: Colors.grey[500],
-              offset: Offset(-4.0, -4.0),
+              offset: Offset(4.0, 4.0),
               blurRadius: 15.0,
               spreadRadius: 1.0),
           BoxShadow(
               color: Colors.white,
-              offset: Offset(4.0, 4.0),
+              offset: Offset(-4.0, -4.0),
               blurRadius: 15.0,
               spreadRadius: 1.0
           ),
@@ -187,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       // appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: Column(
@@ -197,6 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 SizedBox(width : ((MediaQuery.of(context).size.width)*7/8)-15),
                 Container(
+                  padding: const EdgeInsets.all(0.0),
                   child: new IconButton(
                     icon : Icon(Icons.settings),
                     onPressed:() async{
@@ -215,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
           new Container(
             width : (MediaQuery.of(context).size.width)*7/8,
             height: (MediaQuery.of(context).size.width)*7/8,
-            margin: EdgeInsets.all(20.0),
+            margin: EdgeInsets.all(0.0),
             decoration: _shadow_1,
             child : Column (
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -250,7 +251,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ]
             ),
           ),
-          SizedBox(height:0,),
+          SizedBox(height:20),
           Row (
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
@@ -265,21 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
                         height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey[500],
-                                  offset: Offset(4.0, 4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                              BoxShadow(
-                                  color: Colors.white,
-                                  offset: Offset(-4.0, -4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                            ]),
+                        decoration: _shadow_2,
                         padding: const EdgeInsets.all(10.0),
                         child : new Text(
                           "$_timer1string",
@@ -300,21 +287,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
                         height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey[500],
-                                  offset: Offset(4.0, 4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                              BoxShadow(
-                                  color: Colors.white,
-                                  offset: Offset(-4.0, -4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                            ]),
+                        decoration: _shadow_2,
                         padding: const EdgeInsets.all(10.0),
                         child : new Text(
                           "$_timer2string",
@@ -337,21 +310,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
                         height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey[500],
-                                  offset: Offset(4.0, 4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                              BoxShadow(
-                                  color: Colors.white,
-                                  offset: Offset(-4.0, -4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                            ]),
+                        decoration: _shadow_2,
                         padding: const EdgeInsets.all(10.0),
                         child : new Text(
                           "$_timer3string",
@@ -381,21 +340,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/2,
                         height : (((MediaQuery.of(context).size.width)*7/8)-20)/4,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey[500],
-                                  offset: Offset(4.0, 4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                              BoxShadow(
-                                  color: Colors.white,
-                                  offset: Offset(-4.0, -4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                            ]),
+                        decoration: _shadow_2,
                         padding: const EdgeInsets.all(10.0),
                         child : new Text(
                           '리셋',
@@ -418,21 +363,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/2,
                         height : (((MediaQuery.of(context).size.width)*7/8)-20)/4,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey[500],
-                                  offset: Offset(4.0, 4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                              BoxShadow(
-                                  color: Colors.white,
-                                  offset: Offset(-4.0, -4.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 1.0),
-                            ]),
+                        decoration: _shadow_2,
                         padding: const EdgeInsets.all(10.0),
                         child : new Text(
                           _text,
@@ -549,9 +480,19 @@ class _TimerSettingState extends State<TimerSetting> {
           return false;
         },
         child: Scaffold(
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Colors.grey[200],
             appBar: AppBar(
-              title: Text("TimerSetting"),
+              iconTheme: IconThemeData(
+                color: Colors.black, //change your color here
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.grey[200],
+              title: Text("타이머 설정",style: new TextStyle(fontSize:20.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                  fontFamily: "Roboto"
+              ),
+            ),
             ),
             body: Center(
                 child: Column(
@@ -563,52 +504,64 @@ class _TimerSettingState extends State<TimerSetting> {
                               width : MediaQuery.of(context).size.width*2/3,
                               child : Text(
                                 "1번 타이머",
-                                textAlign: TextAlign.left,)
-                          ),
-                          Container(
-                              child : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children : <Widget>[
-                                    Container(
-                                      padding: const EdgeInsets.all(12.0),
-                                      width : MediaQuery.of(context).size.width/3,
-                                      child :
-                                      new TextField(
-                                        controller: myController1min,
-                                        keyboardType: TextInputType.number,
-                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                        textAlign: TextAlign.center,
-                                        decoration: InputDecoration(
-                                            border: UnderlineInputBorder(),
-                                            hintText: '${_timer1~/60}'
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                        child :
-                                        Text("분")
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.all(12.0),
-                                      width : MediaQuery.of(context).size.width/3,
-                                      child : new TextField(
-                                        controller: myController1sec,
-                                        keyboardType: TextInputType.number,
-                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                        textAlign: TextAlign.center,
-                                        decoration: InputDecoration(
-                                            border: UnderlineInputBorder(),
-                                            hintText: '${_timer1%60}'
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                        child :
-                                        Text("초")
-                                    ),
-                                  ]
+                                textAlign: TextAlign.left,
+                                style : TextStyle(
+                                  fontWeight : FontWeight.w800,
+                                  fontSize : 20,
+                                ),
                               )
                           ),
+                          SizedBox(height:10),
+                          Container(
+                              child : Container(
+                                decoration : _shadow_1,
+                                width : (MediaQuery.of(context).size.width)*2/3+60,
+                                height : 60,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children : <Widget>[
+                                      Container(
+                                        padding: const EdgeInsets.all(12.0),
+                                        width : MediaQuery.of(context).size.width/3,
+                                        child :
+                                        new TextField(
+                                          controller: myController1min,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                          textAlign: TextAlign.center,
+                                          decoration: InputDecoration(
+                                              border: UnderlineInputBorder(),
+                                              hintText: '${_timer1~/60}'
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                          child :
+                                          Text("분")
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(12.0),
+                                        width : MediaQuery.of(context).size.width/3,
+                                        child : new TextField(
+                                          controller: myController1sec,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                          textAlign: TextAlign.center,
+                                          decoration: InputDecoration(
+                                              border: UnderlineInputBorder(),
+                                              hintText: '${_timer1%60}'
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                          child :
+                                          Text("초")
+                                      ),
+                                    ]
+                                ),
+                              )
+                          ),
+                          SizedBox(height:10),
                         ]
                     ),
                     Column(
@@ -720,20 +673,65 @@ class _TimerSettingState extends State<TimerSetting> {
                         ]
                     ),
                     new RaisedButton(
-                      color: Colors.white,
+                      // color: Colors.white,
+                      // shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(10.0),
+                      //     side: BorderSide(color: Colors.black12)),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Colors.black12)),
+                          borderRadius: BorderRadius.circular(50)),
+                      padding: EdgeInsets.all(0.0),
                       onPressed: () {
                         _changeTimer();
                       },
-                      child: Text('저장'),
+                      child: Container(
+                          alignment: Alignment.center,
+                          width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                          padding: const EdgeInsets.all(10.0),
+                          decoration : _shadow_2,
+                          child: Text('저장')
+                      ),
                     ),
                   ],
                 )
             )
         ));
   }
+
+  final _shadow_1 = BoxDecoration(
+      color: Colors.grey[200],
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.grey[500],
+            offset: Offset(4.0, 4.0),
+            blurRadius: 15.0,
+            spreadRadius: 1.0),
+        BoxShadow(
+            color: Colors.white,
+            offset: Offset(-4.0, -4.0),
+            blurRadius: 15.0,
+            spreadRadius: 1.0
+        ),
+      ]
+  );
+
+  final _shadow_2 = BoxDecoration(
+      color: Colors.grey[200],
+      borderRadius: BorderRadius.all(Radius.circular(30)),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.grey[500],
+            offset: Offset(4.0, 4.0),
+            blurRadius: 15.0,
+            spreadRadius: 1.0),
+        BoxShadow(
+            color: Colors.white,
+            offset: Offset(-4.0, -4.0),
+            blurRadius: 15.0,
+            spreadRadius: 1.0
+        ),
+      ]
+  );
 
   _changeTimer() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
