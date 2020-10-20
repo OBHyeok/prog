@@ -150,18 +150,31 @@ class _MyHomePageState extends State<MyHomePage> {
     var _timer3string = '$_timer3min'+':'+'$_timer3sec';
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      backgroundColor: Colors.grey[300],
+      // appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
           new Container(
-            height: (MediaQuery.of(context).size.width)*6/8,
+            width : (MediaQuery.of(context).size.width)*7/8,
+            height: (MediaQuery.of(context).size.width)*7/8,
             margin: EdgeInsets.all(20.0),
             decoration: BoxDecoration(
-                color: Colors.amber,
-                shape: BoxShape.circle
-            ),
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey[500],
+                      offset: Offset(4.0, 4.0),
+                      blurRadius: 15.0,
+                      spreadRadius: 1.0),
+                  BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-4.0, -4.0),
+                      blurRadius: 15.0,
+                      spreadRadius: 1.0),
+                ]),
             child : Column (
                 mainAxisAlignment: MainAxisAlignment.center,
                 children : <Widget> [
@@ -173,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       '$timeString',
                       style: TextStyle(
                         fontSize: (MediaQuery.of(context).size.width)*2/8,
-                        color: Colors.white, fontWeight: FontWeight.w900,
+                        color: Colors.black, fontWeight: FontWeight.w800,
                       ),
                     ),
                   ),
@@ -200,21 +213,62 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                new RaisedButton(key:null, onPressed:_default1,
-                    color: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child:
-                    new Text(
-                      "$_timer1string",
-                      style: new TextStyle(fontSize:20.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: "Roboto"),
-                    )
-                ),
+                // new RaisedButton(key:null, onPressed : _default1,
+                //     // textColor: Colors.black,
+                //     // color: Theme.of(context).primaryColor,
+                //     // shape: RoundedRectangleBorder(
+                //     //     borderRadius: BorderRadius.circular(10)),
+                //     // padding: EdgeInsets.all(20),
+                //     child: Container(
+                //       width : 100,
+                //         decoration: BoxDecoration(
+                //             color: Colors.grey[300],
+                //             // borderRadius: BorderRadius.all(Radius.circular(50)),
+                //             boxShadow: [
+                //               BoxShadow(
+                //                   color: Colors.grey[500],
+                //                   offset: Offset(4.0, 4.0),
+                //                   blurRadius: 15.0,
+                //                   spreadRadius: 1.0),
+                //               BoxShadow(
+                //                   color: Colors.white,
+                //                   offset: Offset(-4.0, -4.0),
+                //                   blurRadius: 15.0,
+                //                   spreadRadius: 1.0),
+                //             ]),
+                //         padding: const EdgeInsets.all(10.0),
+                //       child : new Text(
+                //         "$_timer1string",
+                //         style: new TextStyle(fontSize:20.0,
+                //             // color: Colors.black,
+                //             fontWeight: FontWeight.w300,
+                //             fontFamily: "Roboto"),
+                //     )
+                //   )
+                // ),
                 new SizedBox(
-                  width: 10,
+                  child : RaisedButton(
+                    onPressed : _default1,
+                    child : Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey[500],
+                                offset: Offset(4.0, 4.0),
+                                blurRadius: 15.0,
+                                spreadRadius: 1.0),
+                            BoxShadow(
+                                color: Colors.white,
+                                offset: Offset(-4.0, -4.0),
+                                blurRadius: 15.0,
+                                spreadRadius: 1.0),
+                          ]),
+                      child : Text('hello')
+                    )
+                  ),
+                  width: 100,
                 ),
                 new RaisedButton(key:null, onPressed:_default2,
                     color: Theme.of(context).primaryColor,
@@ -380,6 +434,7 @@ class _TimerSettingState extends State<TimerSetting> {
           return false;
         },
         child: Scaffold(
+          backgroundColor: Colors.grey[300],
             appBar: AppBar(
               title: Text("TimerSetting"),
             ),
