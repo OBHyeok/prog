@@ -193,6 +193,25 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Row(
+              children: [
+                SizedBox(width : ((MediaQuery.of(context).size.width)*7/8)-15),
+                Container(
+                  child: new IconButton(
+                    icon : Icon(Icons.settings),
+                    onPressed:() async{
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TimerSetting()),
+                      );
+                      print("Update State of FirstPage");
+                      setState(() {
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           new Container(
             width : (MediaQuery.of(context).size.width)*7/8,
             height: (MediaQuery.of(context).size.width)*7/8,
@@ -231,6 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ]
             ),
           ),
+          SizedBox(height:0,),
           Row (
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
@@ -244,6 +264,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Container(
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                        height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
                         decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -278,6 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Container(
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                        height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
                         decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -314,6 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Container(
                         alignment: Alignment.center,
                         width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                        height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
                         decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -422,23 +445,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            new SizedBox(height:30)
+            new SizedBox(height:60)
             ]
           )
         ),
-      floatingActionButton: FloatingActionButton(
-        onPressed:() async{
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => TimerSetting()),
-        );
-        print("Update State of FirstPage");
-        setState(() {
-        });
-        },
-        child: Icon(Icons.settings),
-        backgroundColor: Colors.grey,
-     ),
     );
   }
 
