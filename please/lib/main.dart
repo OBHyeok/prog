@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter AdMob Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -294,7 +295,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ]),
                         padding: const EdgeInsets.all(10.0),
                         child : new Text(
-                          "$_timer1string",
+                          "$_timer2string",
                           style: new TextStyle(fontSize:20.0,
                               // color: Colors.black,
                               fontWeight: FontWeight.w300,
@@ -330,7 +331,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ]),
                         padding: const EdgeInsets.all(10.0),
                         child : new Text(
-                          "$_timer1string",
+                          "$_timer3string",
                           style: new TextStyle(fontSize:20.0,
                               // color: Colors.black,
                               fontWeight: FontWeight.w300,
@@ -343,20 +344,85 @@ class _MyHomePageState extends State<MyHomePage> {
           new SizedBox(
             height: 15,
           ),
-          new RaisedButton(
-            child : Text(
-                _text,
-                style: new TextStyle(
-                  color: Colors.white,
-                )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                new RaisedButton(
+                    onPressed: () => setState(() {
+                      _reset();
+                    }),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Container(
+                        alignment: Alignment.center,
+                        width : (((MediaQuery.of(context).size.width)*7/8)-20)/2,
+                        height : (((MediaQuery.of(context).size.width)*7/8)-20)/4,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[500],
+                                  offset: Offset(4.0, 4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                              BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4.0, -4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                            ]),
+                        padding: const EdgeInsets.all(10.0),
+                        child : new Text(
+                          '리셋',
+                          style: new TextStyle(fontSize:20.0,
+                              // color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: "Roboto"),
+                        )
+                    )
+                ),
+                new SizedBox(width : 20,),
+                new RaisedButton(
+                    onPressed: () => setState(() {
+                      _click();
+                    }),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Container(
+                        alignment: Alignment.center,
+                        width : (((MediaQuery.of(context).size.width)*7/8)-20)/2,
+                        height : (((MediaQuery.of(context).size.width)*7/8)-20)/4,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[500],
+                                  offset: Offset(4.0, 4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                              BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4.0, -4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                            ]),
+                        padding: const EdgeInsets.all(10.0),
+                        child : new Text(
+                          _text,
+                          style: new TextStyle(fontSize:20.0,
+                              // color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: "Roboto"),
+                        )
+                    )
+                ),
+              ],
             ),
-            color : _color,
-            onPressed: () => setState(() {
-              _click();
-            }),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)),
-              ),
+            new SizedBox(height:30)
             ]
           )
         ),
