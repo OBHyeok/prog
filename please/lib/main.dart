@@ -149,6 +149,42 @@ class _MyHomePageState extends State<MyHomePage> {
     var _timer3sec = '${_timer3 % 60}'.padLeft(2, '0');
     var _timer3string = '$_timer3min'+':'+'$_timer3sec';
 
+    final _shadow_1 = BoxDecoration(
+      color: Colors.grey[300],
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey[500],
+          offset: Offset(4.0, 4.0),
+          blurRadius: 15.0,
+          spreadRadius: 1.0),
+        BoxShadow(
+          color: Colors.white,
+          offset: Offset(-4.0, -4.0),
+          blurRadius: 15.0,
+          spreadRadius: 1.0
+        ),
+      ]
+    );
+
+    final _shadow_2 = BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey[500],
+              offset: Offset(-4.0, -4.0),
+              blurRadius: 15.0,
+              spreadRadius: 1.0),
+          BoxShadow(
+              color: Colors.white,
+              offset: Offset(4.0, 4.0),
+              blurRadius: 15.0,
+              spreadRadius: 1.0
+          ),
+        ]
+    );
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       // appBar: AppBar(title: Text(widget.title)),
@@ -160,21 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width : (MediaQuery.of(context).size.width)*7/8,
             height: (MediaQuery.of(context).size.width)*7/8,
             margin: EdgeInsets.all(20.0),
-            decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey[500],
-                      offset: Offset(4.0, 4.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 1.0),
-                  BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(-4.0, -4.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 1.0),
-                ]),
+            decoration: _shadow_1,
             child : Column (
                 mainAxisAlignment: MainAxisAlignment.center,
                 children : <Widget> [
@@ -186,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       '$timeString',
                       style: TextStyle(
                         fontSize: (MediaQuery.of(context).size.width)*2/8,
-                        color: Colors.black, fontWeight: FontWeight.w800,
+                        color: Colors.black, fontWeight: FontWeight.w300,fontFamily: "Roboto"
                       ),
                     ),
                   ),
@@ -213,90 +235,107 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                // new RaisedButton(key:null, onPressed : _default1,
-                //     // textColor: Colors.black,
-                //     // color: Theme.of(context).primaryColor,
-                //     // shape: RoundedRectangleBorder(
-                //     //     borderRadius: BorderRadius.circular(10)),
-                //     // padding: EdgeInsets.all(20),
-                //     child: Container(
-                //       width : 100,
-                //         decoration: BoxDecoration(
-                //             color: Colors.grey[300],
-                //             // borderRadius: BorderRadius.all(Radius.circular(50)),
-                //             boxShadow: [
-                //               BoxShadow(
-                //                   color: Colors.grey[500],
-                //                   offset: Offset(4.0, 4.0),
-                //                   blurRadius: 15.0,
-                //                   spreadRadius: 1.0),
-                //               BoxShadow(
-                //                   color: Colors.white,
-                //                   offset: Offset(-4.0, -4.0),
-                //                   blurRadius: 15.0,
-                //                   spreadRadius: 1.0),
-                //             ]),
-                //         padding: const EdgeInsets.all(10.0),
-                //       child : new Text(
-                //         "$_timer1string",
-                //         style: new TextStyle(fontSize:20.0,
-                //             // color: Colors.black,
-                //             fontWeight: FontWeight.w300,
-                //             fontFamily: "Roboto"),
-                //     )
-                //   )
-                // ),
-                new SizedBox(
-                  child : RaisedButton(
+                new RaisedButton(
                     onPressed : _default1,
-                    child : Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey[500],
-                                offset: Offset(4.0, 4.0),
-                                blurRadius: 15.0,
-                                spreadRadius: 1.0),
-                            BoxShadow(
-                                color: Colors.white,
-                                offset: Offset(-4.0, -4.0),
-                                blurRadius: 15.0,
-                                spreadRadius: 1.0),
-                          ]),
-                      child : Text('hello')
-                    )
-                  ),
-                  width: 100,
-                ),
-                new RaisedButton(key:null, onPressed:_default2,
-                    color: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child:
-                    new Text(
-                      "$_timer2string",
-                      style: new TextStyle(fontSize:20.0,
-                          color: const Color(0xFF000000),
-                          fontWeight: FontWeight.w300,
-                          fontFamily: "Roboto"),
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Container(
+                        alignment: Alignment.center,
+                        width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[500],
+                                  offset: Offset(4.0, 4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                              BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4.0, -4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                            ]),
+                        padding: const EdgeInsets.all(10.0),
+                        child : new Text(
+                          "$_timer1string",
+                          style: new TextStyle(fontSize:20.0,
+                              // color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: "Roboto"),
+                        )
+                    )
+                ),
+                new SizedBox(width : 10),
+                new RaisedButton(
+                    onPressed : _default2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Container(
+                        alignment: Alignment.center,
+                        width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[500],
+                                  offset: Offset(4.0, 4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                              BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4.0, -4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                            ]),
+                        padding: const EdgeInsets.all(10.0),
+                        child : new Text(
+                          "$_timer1string",
+                          style: new TextStyle(fontSize:20.0,
+                              // color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: "Roboto"),
+                        )
                     )
                 ),
                 new SizedBox(
                   width: 10,
                 ),
-                new RaisedButton(key:null, onPressed:_default3,
-                    color: Theme.of(context).primaryColor,
+                new RaisedButton(
+                    onPressed : _default3,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child:
-                    new Text(
-                      "$_timer3string",
-                      style: new TextStyle(fontSize:20.0,
-                          color: const Color(0xFF000000),
-                          fontWeight: FontWeight.w300,
-                          fontFamily: "Roboto"),
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Container(
+                        alignment: Alignment.center,
+                        width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[500],
+                                  offset: Offset(4.0, 4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                              BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-4.0, -4.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 1.0),
+                            ]),
+                        padding: const EdgeInsets.all(10.0),
+                        child : new Text(
+                          "$_timer1string",
+                          style: new TextStyle(fontSize:20.0,
+                              // color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: "Roboto"),
+                        )
                     )
                 ),
               ]
