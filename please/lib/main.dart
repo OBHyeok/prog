@@ -20,21 +20,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
-        ? CupertinoApp(
-            title: 'Flutter AdMob Demo',
-            theme: CupertinoThemeData(
-              primaryColor: Colors.blue,
-            ),
-            home: MyHomePage(title: 'Flutter AdMob Demo'),
-          )
-        : MaterialApp(
-            title: 'Flutter AdMob Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-            ),
-          home: MyHomePage(title: 'Flutter AdMob Demo'),
+    return MaterialApp(
+      title: 'Flutter AdMob Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: 'Flutter AdMob Demo'),
     );
   }
 }
@@ -46,6 +38,11 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
+var _default = 60 ;
+var _timer1 = 1;
+var _timer2 = 2;
+var _timer3 = 3;
 
 class _MyHomePageState extends State<MyHomePage> {
 
@@ -71,20 +68,524 @@ class _MyHomePageState extends State<MyHomePage> {
             : 'ca-app-pub-8161556053827608~5769578724'); // Android Test App ID
     bannerAd..load()..show();
     super.initState();
+    _loadCounter();
+  }
+
+  void _loadCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _timer1 = (prefs.getInt('timer1') ?? 60);
+      _timer2 = (prefs.getInt('timer2') ?? 90);
+      _timer3 = (prefs.getInt('timer3') ?? 30);
+    });
+  }
+
+  int _counter = _default;
+
+  var _icon = Icons.play_arrow;
+  var _color = Colors.amber;
+  Timer _timer;
+  var _isPlaying = false;
+
+
+  void _incrementCounterPlus() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _incrementCounterMinus() {
+    setState(() {
+      _counter--;
+    });
+  }
+
+  void _default1() {
+    setState(() {
+      _default = _timer1;
+      _reset();
+    });
+  }
+
+  void _default2() {
+    setState(() {
+      _default = _timer2;
+      _reset();
+    });
+  }
+
+  void _default3() {
+    setState(() {
+      _default = _timer3;
+      _reset();
+    });
+  }
+
+  void handleClick(String value) {
+    switch (value) {
+      case 'Logout':
+        break;
+      case 'Settings':
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
-        ? CupertinoPageScaffold(
-            navigationBar: CupertinoNavigationBar(
-              middle: Text(widget.title),
+
+    var min = _counter ~/ 60; // 초
+    var sec = '${_counter % 60}'.padLeft(2, '0');
+    var timeString = '$min'+':'+'$sec';
+
+    var _timer1min = '${_timer1 ~/ 60}'; // 초
+    var _timer1sec = '${_timer1 % 60}'.padLeft(2, '0');
+    var _timer1string = '$_timer1min'+':'+'$_timer1sec';
+
+    var _timer2min = '${_timer2 ~/ 60}'; // 초
+    var _timer2sec = '${_timer2 % 60}'.padLeft(2, '0');
+    var _timer2string = '$_timer2min'+':'+'$_timer2sec';
+
+    var _timer3min = '${_timer3 ~/ 60}'; // 초
+    var _timer3sec = '${_timer3 % 60}'.padLeft(2, '0');
+    var _timer3string = '$_timer3min'+':'+'$_timer3sec';
+
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.title)),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+          new Container(
+            height: (MediaQuery.of(context).size.width)*6/8,
+            margin: EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+                color: Colors.amber,
+                shape: BoxShape.circle
             ),
-            child: Container(),
+            child : Column (
+                mainAxisAlignment: MainAxisAlignment.center,
+                children : <Widget> [
+                  SizedBox(
+                      height: (MediaQuery.of(context).size.width)*1/8
+                  ),
+                  Container(
+                    child : new Text(
+                      '$timeString',
+                      style: TextStyle(
+                        fontSize: (MediaQuery.of(context).size.width)*2/8,
+                        color: Colors.white, fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  Row (
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        new IconButton(key:null, onPressed:_incrementCounterMinus,
+                          color: Colors.black,
+                          icon: Icon(Icons.remove_circle_outline),
+                        ),
+                        new IconButton(key:null, onPressed:_incrementCounterPlus,
+                          color: Colors.black,
+                          icon: Icon(Icons.add_circle_outline),
+                        ),
+                      ]
+                  ),
+                ]
+            ),
+          ),
+          Row (
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                new RaisedButton(key:null, onPressed:_default1,
+                    color: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child:
+                    new Text(
+                      "$_timer1string",
+                      style: new TextStyle(fontSize:20.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "Roboto"),
+                    )
+                ),
+                new SizedBox(
+                  width: 10,
+                ),
+                new RaisedButton(key:null, onPressed:_default2,
+                    color: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child:
+                    new Text(
+                      "$_timer2string",
+                      style: new TextStyle(fontSize:20.0,
+                          color: const Color(0xFF000000),
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "Roboto"),
+                    )
+                ),
+                new SizedBox(
+                  width: 10,
+                ),
+                new RaisedButton(key:null, onPressed:_default3,
+                    color: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child:
+                    new Text(
+                      "$_timer3string",
+                      style: new TextStyle(fontSize:20.0,
+                          color: const Color(0xFF000000),
+                          fontWeight: FontWeight.w300,
+                          fontFamily: "Roboto"),
+                    )
+                ),
+              ]
+          ),
+          new SizedBox(
+            height: 15,
+          ),
+          new RaisedButton(
+            child : Text(
+                _text,
+                style: new TextStyle(
+                  color: Colors.white,
+                )
+            ),
+            color : _color,
+            onPressed: () => setState(() {
+              _click();
+            }),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)),
+              ),
+            ]
           )
-        : Scaffold(
-            appBar: AppBar(title: Text(widget.title)),
-            body: Container(),
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed:() async{
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TimerSetting()),
         );
+        print("Update State of FirstPage");
+        setState(() {
+        });
+        },
+        child: Icon(Icons.settings),
+        backgroundColor: Colors.grey,
+     ),
+    );
+  }
+
+  var _text = '시작';
+
+  void _click() {
+    _isPlaying = !_isPlaying;
+
+    if (_isPlaying) {
+      _icon = Icons.pause;
+      _color = Colors.grey;
+      _text = '중지';
+      _start();
+      // controller.reverse(
+      //     from: controller.value == 0.0
+      //         ? 1.0
+      //         : controller.value);
+    } else {
+      _icon = Icons.play_arrow;
+      _color = Colors.amber;
+      _text = '시작';
+      _pause();
+      // controller.stop();
+    }
+  }
+
+  void _start() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_counter > 1) {
+          if (_counter == 6) {
+            HapticFeedback.lightImpact();
+            print('5 sec left');
+          }
+          _counter--;
+        }
+        else if (_counter == 1) {
+          _reset();
+          HapticFeedback.vibrate();
+          FlutterRingtonePlayer.playNotification();
+          print('0 sec left');
+        }
+      });
+    });
+  }
+
+  void _pause() {
+    _timer?.cancel();
+  }
+
+  void _reset() {
+    setState(() {
+      if (_isPlaying == true ) {
+        _click();
+      }
+      _counter = _default;
+    });
+  }
+}
+
+class TimerSetting extends StatefulWidget {
+  @override
+  _TimerSettingState createState() => _TimerSettingState();
+}
+
+class _TimerSettingState extends State<TimerSetting> {
+
+  final myController1min = TextEditingController();
+  final myController1sec = TextEditingController();
+  final myController2min = TextEditingController();
+  final myController2sec = TextEditingController();
+  final myController3min = TextEditingController();
+  final myController3sec = TextEditingController();
+
+  @override
+  void initState() {
+    print("initState() of _SecondPage");
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    print("dispose() of _SecondPage");
+    //storeSettingValues();
+    super.dispose();
+  }
+
+  void storeSettingValues() {
+    print("store setting values");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+        onWillPop: () async {
+          storeSettingValues();
+          Navigator.pop(context);
+          return false;
+        },
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text("TimerSetting"),
+            ),
+            body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Column(
+                        children: [
+                          Container(
+                              width : MediaQuery.of(context).size.width*2/3,
+                              child : Text(
+                                "1번 타이머",
+                                textAlign: TextAlign.left,)
+                          ),
+                          Container(
+                              child : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children : <Widget>[
+                                    Container(
+                                      padding: const EdgeInsets.all(12.0),
+                                      width : MediaQuery.of(context).size.width/3,
+                                      child :
+                                      new TextField(
+                                        controller: myController1min,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                        textAlign: TextAlign.center,
+                                        decoration: InputDecoration(
+                                            border: UnderlineInputBorder(),
+                                            hintText: '${_timer1~/60}'
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                        child :
+                                        Text("분")
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(12.0),
+                                      width : MediaQuery.of(context).size.width/3,
+                                      child : new TextField(
+                                        controller: myController1sec,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                        textAlign: TextAlign.center,
+                                        decoration: InputDecoration(
+                                            border: UnderlineInputBorder(),
+                                            hintText: '${_timer1%60}'
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                        child :
+                                        Text("초")
+                                    ),
+                                  ]
+                              )
+                          ),
+                        ]
+                    ),
+                    Column(
+                        children: [
+                          Container(
+                              width : MediaQuery.of(context).size.width*2/3,
+                              child : Text(
+                                "2번 타이머",
+                                textAlign: TextAlign.left,)
+                          ),
+                          Container(
+                              child : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children : <Widget>[
+                                    Container(
+                                      padding: const EdgeInsets.all(12.0),
+                                      width : MediaQuery.of(context).size.width/3,
+                                      child :
+                                      new TextField(
+                                        controller: myController2min,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                        textAlign: TextAlign.center,
+                                        decoration: InputDecoration(
+                                            border: UnderlineInputBorder(),
+                                            hintText: '${_timer2~/60}'
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                        child :
+                                        Text("분")
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(12.0),
+                                      width : MediaQuery.of(context).size.width/3,
+                                      child : new TextField(
+                                        controller: myController2sec,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                        textAlign: TextAlign.center,
+                                        decoration: InputDecoration(
+                                            border: UnderlineInputBorder(),
+                                            hintText: '${_timer2%60}'
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                        child :
+                                        Text("초")
+                                    ),
+                                  ]
+                              )
+                          ),
+                        ]
+                    ),
+                    Column(
+                        children: [
+                          Container(
+                              width : MediaQuery.of(context).size.width*2/3,
+                              child : Text(
+                                "3번 타이머",
+                                textAlign: TextAlign.left,)
+                          ),
+                          Container(
+                              child : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children : <Widget>[
+                                    Container(
+                                      padding: const EdgeInsets.all(12.0),
+                                      width : (MediaQuery.of(context).size.width)/3,
+                                      child :
+                                      new TextField(
+                                        controller: myController3min,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                        textAlign: TextAlign.center,
+                                        decoration: InputDecoration(
+                                            border: UnderlineInputBorder(),
+                                            hintText: '${_timer3~/60}'
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                        child :
+                                        Text("분")
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(12.0),
+                                      width : MediaQuery.of(context).size.width/3,
+                                      child : new TextField(
+                                        controller: myController3sec,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                        textAlign: TextAlign.center,
+                                        decoration: InputDecoration(
+                                            border: UnderlineInputBorder(),
+                                            hintText: '${_timer3%60}'
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                        child :
+                                        Text("초")
+                                    ),
+                                  ]
+                              )
+                          ),
+                        ]
+                    ),
+                    new RaisedButton(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Colors.black12)),
+                      onPressed: () {
+                        _changeTimer();
+                      },
+                      child: Text('저장'),
+                    ),
+                  ],
+                )
+            )
+        ));
+  }
+
+  _changeTimer() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      var _timerList = [ _timer1~/60, _timer1%60, _timer2~/60, _timer2%60,_timer3~/60, _timer3%60,  ] ;
+      var controllerList = [myController1min,myController1sec,myController2min,myController2sec,myController3min,myController3sec];
+      for (var controller in controllerList) {
+        if (controller.text == ''){
+          controller.text = _timerList[controllerList.indexOf(controller)].toString();
+        }
+      }
+      _timer1 = int.parse(myController1min.text) * 60 +
+          int.parse(myController1sec.text);
+      prefs.setInt('timer1', _timer1);
+
+      _timer2 = int.parse(myController2min.text) * 60 +
+          int.parse(myController2sec.text);
+      prefs.setInt('timer2', _timer2);
+
+      _timer3 = int.parse(myController3min.text) * 60 +
+          int.parse(myController3sec.text);
+      prefs.setInt('timer3', _timer3);
+    });
   }
 }
