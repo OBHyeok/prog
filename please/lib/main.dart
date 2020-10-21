@@ -66,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage>
   );
 
   int _counter = _default;
+  int _counterSecond = 0 ;
 
   @override
   void initState() {
@@ -96,41 +97,59 @@ class _MyHomePageState extends State<MyHomePage>
   var _icon = Icons.play_arrow;
   var _color = Colors.amber;
   Timer _timer;
+  Timer _timerSecond;
   var _isPlaying = false;
 
 
   void _incrementCounterPlus() {
+    SystemSound.play(SystemSoundType.click);
     setState(() {
       _counter++;
     });
   }
 
   void _incrementCounterMinus() {
+    SystemSound.play(SystemSoundType.click);
     setState(() {
       _counter--;
     });
   }
 
   void _default1() {
+    SystemSound.play(SystemSoundType.click);
+    _resetSecond();
     setState(() {
       _default = _timer1;
       _counter = _default;
+      controller.duration = Duration(seconds: _timer1);
+      setState(() {
+      });
       _reset();
     });
   }
 
   void _default2() {
+    SystemSound.play(SystemSoundType.click);
+    _resetSecond();
     setState(() {
       _default = _timer2;
       _counter = _default;
+      controller.duration = Duration(seconds: _timer2);
+      setState(() {
+      });
       _reset();
     });
   }
 
   void _default3() {
+    SystemSound.play(SystemSoundType.click);
+    _resetSecond();
     setState(() {
       _default = _timer3;
       _counter = _default;
+      controller.duration = Duration(seconds: _timer3);
+      setState(() {
+      });
       _reset();
     });
   }
@@ -162,6 +181,10 @@ class _MyHomePageState extends State<MyHomePage>
     var _timer3min = '${_timer3 ~/ 60}'; // 초
     var _timer3sec = '${_timer3 % 60}'.padLeft(2, '0');
     var _timer3string = '$_timer3min'+':'+'$_timer3sec';
+
+    var _counterSecondMin = '${_counterSecond ~/ 60}';
+    var _counterSecondSec = '${_counterSecond % 60}'.padLeft(2, '0');
+    var _counterSecondString = '$_counterSecondMin'+':'+'$_counterSecondSec';
 
     final _shadow_1 = BoxDecoration(
       color: Colors.grey[200],
@@ -216,6 +239,7 @@ class _MyHomePageState extends State<MyHomePage>
                     child: new IconButton(
                       icon : Icon(Icons.settings),
                       onPressed:() async{
+                        SystemSound.play(SystemSoundType.click);
                         await Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => TimerSetting()),
@@ -229,19 +253,25 @@ class _MyHomePageState extends State<MyHomePage>
                 ],
               ),
             new Container(
+              padding:EdgeInsets.all((MediaQuery.of(context).size.width)*1/16),
               width : (MediaQuery.of(context).size.width)*7/8,
               height: (MediaQuery.of(context).size.width)*7/8,
               margin: EdgeInsets.all(0.0),
               decoration: _shadow_1,
               child : Stack(
                 children: [
-                  Positioned.fill(
-                    child: CustomPaint(
-                        painter: CustomTimerPainter(
-                          animation: controller,
-                          backgroundColor: Colors.white,
-                          color: Colors.grey,
-                        )),
+                  Container(
+                    // padding:EdgeInsets.all(0.0),
+                    // height: ((MediaQuery.of(context).size.width)*7/8)-15,
+                    // width : ((MediaQuery.of(context).size.width)*7/8)-15,
+                    child: Positioned.fill(
+                      child: CustomPaint(
+                          painter: CustomTimerPainter(
+                            animation: controller,
+                            backgroundColor: Colors.grey[500],
+                            color: Colors.grey[200],
+                          )),
+                    ),
                   ),
                   Column (
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -250,12 +280,20 @@ class _MyHomePageState extends State<MyHomePage>
                             height: (MediaQuery.of(context).size.width)*1/8
                         ),
                         Container(
+                          padding: EdgeInsets.all(0.0),
                           child : new Text(
                             '$timeString',
                             style: TextStyle(
                               fontSize: (MediaQuery.of(context).size.width)*2/8,
                               color: Colors.black, fontWeight: FontWeight.w300,fontFamily: "Roboto"
                             ),
+                          ),
+                        ),
+                        Text(
+                          '$_counterSecondString',
+                          style: TextStyle(
+                              fontSize: (MediaQuery.of(context).size.width)*1/14,
+                              color: Colors.grey[500], fontWeight: FontWeight.w300,fontFamily: "Roboto"
                           ),
                         ),
                         Row (
@@ -435,6 +473,8 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _start() {
+    SystemSound.play(SystemSoundType.click);
+    _resetSecond();
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         if (_counter > 0) {
@@ -445,13 +485,27 @@ class _MyHomePageState extends State<MyHomePage>
           _counter--;
         }
         else if (_counter == 0) {
-          _reset();
-          HapticFeedback.vibrate();
           FlutterRingtonePlayer.playNotification();
+          HapticFeedback.vibrate();
+          _reset();
+          _startSecond();
           print('0 sec left');
         }
       });
     });
+  }
+
+  void _startSecond(){
+    _timerSecond = Timer.periodic(Duration(seconds: 1), (timer) {
+     setState(() {
+       _counterSecond ++;
+     });
+    });
+  }
+
+  void _resetSecond() {
+    _timerSecond?.cancel();
+    _counterSecond = 0;
   }
 
   void _pause() {
@@ -459,6 +513,8 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _reset() {
+    SystemSound.play(SystemSoundType.click);
+    _resetSecond();
     setState(() {
       if (_isPlaying == true ) {
         _click();
@@ -483,14 +539,17 @@ class CustomTimerPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
       ..color = backgroundColor
-      ..strokeWidth = 10.0
+      ..strokeWidth = 6.0
       ..strokeCap = StrokeCap.butt
-      ..style = PaintingStyle.stroke;
+      ..style = PaintingStyle.stroke
+    ;
 
     canvas.drawCircle(size.center(Offset.zero), size.width / 2.0, paint);
     paint.color = color;
     double progress = (1.0 - animation.value) * 2 * math.pi;
-    canvas.drawArc(Offset.zero & size, math.pi * 1.5, -progress, false, paint);
+    // canvas.drawShadow(path, Colors.grey.withAlpha(50), 4.0, false);
+    canvas.drawArc(Offset.zero & size, math.pi * 1.5, -progress, false, paint)
+    ;
   }
 
   @override
@@ -543,6 +602,7 @@ class _TimerSettingState extends State<TimerSetting> {
           return false;
         },
         child: Scaffold(
+            // resizeToAvoidBottomInset : false,
             key: scaffoldKey,
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
@@ -761,6 +821,7 @@ class _TimerSettingState extends State<TimerSetting> {
                           borderRadius: BorderRadius.circular(50)),
                       padding: EdgeInsets.all(0.0),
                       onPressed: () {
+                        SystemSound.play(SystemSoundType.click);
                         _changeTimer();
                         showSnackbarWithKey();
                       },
