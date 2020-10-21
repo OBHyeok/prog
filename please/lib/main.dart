@@ -102,7 +102,6 @@ class _MyHomePageState extends State<MyHomePage>
 
 
   void _incrementCounterPlus() {
-    SystemSound.play(SystemSoundType.click);
     setState(() {
       _counter++;
     });
@@ -110,7 +109,6 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _incrementCounterMinus() {
-    SystemSound.play(SystemSoundType.click);
     setState(() {
       _counter--;
     });
@@ -118,7 +116,6 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _default1() {
-    SystemSound.play(SystemSoundType.click);
     _resetSecond();
     setState(() {
       _default = _timer1;
@@ -131,7 +128,6 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _default2() {
-    SystemSound.play(SystemSoundType.click);
     _resetSecond();
     setState(() {
       _default = _timer2;
@@ -144,7 +140,6 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _default3() {
-    SystemSound.play(SystemSoundType.click);
     _resetSecond();
     setState(() {
       _default = _timer3;
@@ -303,11 +298,19 @@ class _MyHomePageState extends State<MyHomePage>
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              new IconButton(key:null, onPressed:_incrementCounterMinus,
+                              new IconButton(key:null,
+                                onPressed:(){
+                                _incrementCounterMinus();
+                                SystemSound.play(SystemSoundType.click);
+                                },
                                 color: Colors.black,
                                 icon: Icon(Icons.remove_circle_outline),
                               ),
-                              new IconButton(key:null, onPressed:_incrementCounterPlus,
+                              new IconButton(key:null,
+                                onPressed:(){
+                                _incrementCounterPlus();
+                                SystemSound.play(SystemSoundType.click);
+                                },
                                 color: Colors.black,
                                 icon: Icon(Icons.add_circle_outline),
                               ),
@@ -325,7 +328,10 @@ class _MyHomePageState extends State<MyHomePage>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   new RaisedButton(
-                      onPressed : _default1,
+                      onPressed:(){
+                        _default1();
+                        SystemSound.play(SystemSoundType.click);
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(0.0),
@@ -346,7 +352,10 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                   new SizedBox(width : 10),
                   new RaisedButton(
-                      onPressed : _default2,
+                      onPressed:(){
+                        _default2();
+                        SystemSound.play(SystemSoundType.click);
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(0.0),
@@ -369,7 +378,10 @@ class _MyHomePageState extends State<MyHomePage>
                     width: 10,
                   ),
                   new RaisedButton(
-                      onPressed : _default3,
+                      onPressed:(){
+                        _default3();
+                        SystemSound.play(SystemSoundType.click);
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(0.0),
@@ -398,7 +410,9 @@ class _MyHomePageState extends State<MyHomePage>
                 children: [
                   new RaisedButton(
                       onPressed: () => setState(() {
+                        SystemSound.play(SystemSoundType.click);
                         _reset();
+                        _resetSecond();
                       }),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
@@ -422,6 +436,7 @@ class _MyHomePageState extends State<MyHomePage>
                   new RaisedButton(
                       onPressed: () => setState(() {
                         _click();
+                        SystemSound.play(SystemSoundType.click);
                       }),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
@@ -475,22 +490,21 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _start() {
-    SystemSound.play(SystemSoundType.click);
     _resetSecond();
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         if (_counter > 0) {
-          if (_counter == 6) {
-            HapticFeedback.lightImpact();
-            print('5 sec left');
+          if (_counter == 1) {
+            FlutterRingtonePlayer.playNotification();
+            HapticFeedback.vibrate();
+            _startSecond();
+            // HapticFeedback.lightImpact();
+            print('1 sec left');
           }
           _counter--;
         }
         else if (_counter == 0) {
-          FlutterRingtonePlayer.playNotification();
-          HapticFeedback.vibrate();
           _reset();
-          _startSecond();
           print('0 sec left');
         }
       });
@@ -515,8 +529,6 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _reset() {
-    SystemSound.play(SystemSoundType.click);
-    _resetSecond();
     setState(() {
       if (_isPlaying == true ) {
         _click();

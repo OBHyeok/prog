@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>142261836956-ou1m4n893dg6v5hjgie8maiimbl837us.apps.googleusercontent.com</string>
+	<string>1090783946766-19i3fgnt5piq0n7ufljhv5i91i5aufn4.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.142261836956-ou1m4n893dg6v5hjgie8maiimbl837us</string>
+	<string>com.googleusercontent.apps.1090783946766-19i3fgnt5piq0n7ufljhv5i91i5aufn4</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBGBi0SqkhTKRkn09jdv8c0612R1NIgsJU</string>
+	<string>AIzaSyC3V787XTOJ3GzgI0Fw7UQmj3BnzlYhyZs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>142261836956</string>
+	<string>1090783946766</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.please</string>
+	<string>com.example.accurate-rest</string>
 	<key>PROJECT_ID</key>
-	<string>please-81a13</string>
+	<string>accurate-ec8b8</string>
 	<key>STORAGE_BUCKET</key>
-	<string>please-81a13.appspot.com</string>
+	<string>accurate-ec8b8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:142261836956:ios:6640ef604181e9fdb3e159</string>
+	<string>1:1090783946766:ios:77f42941f59768b89eb45f</string>
 	<key>DATABASE_URL</key>
-	<string>https://please-81a13.firebaseio.com</string>
+	<string>https://accurate-ec8b8.firebaseio.com</string>
 </dict>
 </plist>
