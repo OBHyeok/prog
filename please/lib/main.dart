@@ -106,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage>
     setState(() {
       _counter++;
     });
+    controller.duration = Duration(seconds: _counter);
   }
 
   void _incrementCounterMinus() {
@@ -113,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage>
     setState(() {
       _counter--;
     });
+    controller.duration = Duration(seconds: _counter);
   }
 
   void _default1() {
@@ -521,6 +523,7 @@ class _MyHomePageState extends State<MyHomePage>
       }
       _counter = _default;
       controller.value = 0.0 ;
+      controller.duration = Duration(seconds: _default);
     });
   }
 }
