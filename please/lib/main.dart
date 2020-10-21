@@ -605,7 +605,7 @@ class _TimerSettingState extends State<TimerSetting> {
           return false;
         },
         child: Scaffold(
-            // resizeToAvoidBottomInset : false,
+            // resizeToAvoidBottomPadding: false,
             key: scaffoldKey,
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
@@ -623,222 +623,224 @@ class _TimerSettingState extends State<TimerSetting> {
             ),
             ),
             body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width : MediaQuery.of(context).size.width*7/8,
-                      height : MediaQuery.of(context).size.width*7/8,
-                      decoration : _shadow_1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
-                              children: [
-                                Container(
-                                    width : MediaQuery.of(context).size.width*2/3,
-                                    child : Text(
-                                      "1번 타이머",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width : MediaQuery.of(context).size.width*7/8,
+                        height : MediaQuery.of(context).size.width*7/8,
+                        decoration : _shadow_1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Column(
+                                children: [
+                                  Container(
+                                      width : MediaQuery.of(context).size.width*2/3,
+                                      child : Text(
+                                        "1번 타이머",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                            // fontSize: 15,
+                                            color: Colors.black, fontWeight: FontWeight.w600,fontFamily: "Roboto"
+                                        ),
+                                      )
+                                  ),
+                                  Container(
+                                      child : Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children : <Widget>[
+                                            Container(
+                                              padding: const EdgeInsets.all(12.0),
+                                              width : MediaQuery.of(context).size.width/3,
+                                              child :
+                                              new TextField(
+                                                controller: myController1min,
+                                                keyboardType: TextInputType.number,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                                textAlign: TextAlign.center,
+                                                decoration: InputDecoration(
+                                                    border: UnderlineInputBorder(),
+                                                    hintText: '${_timer1~/60}'
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                                child :
+                                                Text("분")
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.all(12.0),
+                                              width : MediaQuery.of(context).size.width/3,
+                                              child : new TextField(
+                                                controller: myController1sec,
+                                                keyboardType: TextInputType.number,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                                textAlign: TextAlign.center,
+                                                decoration: InputDecoration(
+                                                    border: UnderlineInputBorder(),
+                                                    hintText: '${_timer1%60}'
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                                child :
+                                                Text("초")
+                                            ),
+                                          ]
+                                      )
+                                  ),
+                                  SizedBox(height:5),
+                                ]
+                            ),
+                            Column(
+                                children: [
+                                  Container(
+                                      width : MediaQuery.of(context).size.width*2/3,
+                                      child : Text(
+                                        "2번 타이머",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
                                           // fontSize: 15,
-                                          color: Colors.black, fontWeight: FontWeight.w600,fontFamily: "Roboto"
-                                      ),
-                                    )
-                                ),
-                                Container(
-                                    child : Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children : <Widget>[
-                                          Container(
-                                            padding: const EdgeInsets.all(12.0),
-                                            width : MediaQuery.of(context).size.width/3,
-                                            child :
-                                            new TextField(
-                                              controller: myController1min,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                              textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
-                                                  border: UnderlineInputBorder(),
-                                                  hintText: '${_timer1~/60}'
+                                            color: Colors.black, fontWeight: FontWeight.w600,fontFamily: "Roboto"
+                                        ),)
+                                  ),
+                                  Container(
+                                      child : Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children : <Widget>[
+                                            Container(
+                                              padding: const EdgeInsets.all(12.0),
+                                              width : MediaQuery.of(context).size.width/3,
+                                              child :
+                                              new TextField(
+                                                controller: myController2min,
+                                                keyboardType: TextInputType.number,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                                textAlign: TextAlign.center,
+                                                decoration: InputDecoration(
+                                                    border: UnderlineInputBorder(),
+                                                    hintText: '${_timer2~/60}'
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                              child :
-                                              Text("분")
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.all(12.0),
-                                            width : MediaQuery.of(context).size.width/3,
-                                            child : new TextField(
-                                              controller: myController1sec,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                              textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
-                                                  border: UnderlineInputBorder(),
-                                                  hintText: '${_timer1%60}'
+                                            Container(
+                                                child :
+                                                Text("분")
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.all(12.0),
+                                              width : MediaQuery.of(context).size.width/3,
+                                              child : new TextField(
+                                                controller: myController2sec,
+                                                keyboardType: TextInputType.number,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                                textAlign: TextAlign.center,
+                                                decoration: InputDecoration(
+                                                    border: UnderlineInputBorder(),
+                                                    hintText: '${_timer2%60}'
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
+                                            Container(
+                                                child :
+                                                Text("초")
+                                            ),
+                                          ]
+                                      )
+                                  ),
+                                  SizedBox(height:5),
+                                ]
+                            ),
+                            Column(
+                                children: [
+                                  Container(
+                                      width : MediaQuery.of(context).size.width*2/3,
+                                      child : Text(
+                                        "3번 타이머",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          // fontSize: 15,
+                                            color: Colors.black, fontWeight: FontWeight.w600,fontFamily: "Roboto"
+                                        ),
+                                      )
+                                  ),
+                                  Container(
+                                      child : Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children : <Widget>[
+                                            Container(
+                                              padding: const EdgeInsets.all(12.0),
+                                              width : (MediaQuery.of(context).size.width)/3,
                                               child :
-                                              Text("초")
-                                          ),
-                                        ]
-                                    )
-                                ),
-                                SizedBox(height:5),
-                              ]
-                          ),
-                          Column(
-                              children: [
-                                Container(
-                                    width : MediaQuery.of(context).size.width*2/3,
-                                    child : Text(
-                                      "2번 타이머",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        // fontSize: 15,
-                                          color: Colors.black, fontWeight: FontWeight.w600,fontFamily: "Roboto"
-                                      ),)
-                                ),
-                                Container(
-                                    child : Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children : <Widget>[
-                                          Container(
-                                            padding: const EdgeInsets.all(12.0),
-                                            width : MediaQuery.of(context).size.width/3,
-                                            child :
-                                            new TextField(
-                                              controller: myController2min,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                              textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
-                                                  border: UnderlineInputBorder(),
-                                                  hintText: '${_timer2~/60}'
+                                              new TextField(
+                                                controller: myController3min,
+                                                keyboardType: TextInputType.number,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                                textAlign: TextAlign.center,
+                                                decoration: InputDecoration(
+                                                    border: UnderlineInputBorder(),
+                                                    hintText: '${_timer3~/60}'
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                              child :
-                                              Text("분")
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.all(12.0),
-                                            width : MediaQuery.of(context).size.width/3,
-                                            child : new TextField(
-                                              controller: myController2sec,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                              textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
-                                                  border: UnderlineInputBorder(),
-                                                  hintText: '${_timer2%60}'
+                                            Container(
+                                                child :
+                                                Text("분")
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.all(12.0),
+                                              width : MediaQuery.of(context).size.width/3,
+                                              child : new TextField(
+                                                controller: myController3sec,
+                                                keyboardType: TextInputType.number,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
+                                                textAlign: TextAlign.center,
+                                                decoration: InputDecoration(
+                                                    border: UnderlineInputBorder(),
+                                                    hintText: '${_timer3%60}'
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                              child :
-                                              Text("초")
-                                          ),
-                                        ]
-                                    )
-                                ),
-                                SizedBox(height:5),
-                              ]
-                          ),
-                          Column(
-                              children: [
-                                Container(
-                                    width : MediaQuery.of(context).size.width*2/3,
-                                    child : Text(
-                                      "3번 타이머",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        // fontSize: 15,
-                                          color: Colors.black, fontWeight: FontWeight.w600,fontFamily: "Roboto"
-                                      ),
-                                    )
-                                ),
-                                Container(
-                                    child : Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children : <Widget>[
-                                          Container(
-                                            padding: const EdgeInsets.all(12.0),
-                                            width : (MediaQuery.of(context).size.width)/3,
-                                            child :
-                                            new TextField(
-                                              controller: myController3min,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                              textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
-                                                  border: UnderlineInputBorder(),
-                                                  hintText: '${_timer3~/60}'
-                                              ),
+                                            Container(
+                                                child :
+                                                Text("초")
                                             ),
-                                          ),
-                                          Container(
-                                              child :
-                                              Text("분")
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.all(12.0),
-                                            width : MediaQuery.of(context).size.width/3,
-                                            child : new TextField(
-                                              controller: myController3sec,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-99]')),],
-                                              textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
-                                                  border: UnderlineInputBorder(),
-                                                  hintText: '${_timer3%60}'
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                              child :
-                                              Text("초")
-                                          ),
-                                        ]
-                                    )
-                                ),
-                              ]
-                          ),
-                        ],
+                                          ]
+                                      )
+                                  ),
+                                ]
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    new SizedBox(height: 30,),
-                    new RaisedButton(
-                      // color: Colors.white,
-                      // shape: RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.circular(10.0),
-                      //     side: BorderSide(color: Colors.black12)),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      padding: EdgeInsets.all(0.0),
-                      onPressed: () {
-                        SystemSound.play(SystemSoundType.click);
-                        _changeTimer();
-                        showSnackbarWithKey();
-                      },
-                      child: Container(
-                          alignment: Alignment.center,
-                          width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
-                          height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
-                          padding: const EdgeInsets.all(10.0),
-                          decoration : _shadow_2,
-                          child: Text('저장')
+                      new SizedBox(height: 30,),
+                      new RaisedButton(
+                        // color: Colors.white,
+                        // shape: RoundedRectangleBorder(
+                        //     borderRadius: BorderRadius.circular(10.0),
+                        //     side: BorderSide(color: Colors.black12)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        padding: EdgeInsets.all(0.0),
+                        onPressed: () {
+                          SystemSound.play(SystemSoundType.click);
+                          _changeTimer();
+                          showSnackbarWithKey();
+                        },
+                        child: Container(
+                            alignment: Alignment.center,
+                            width : (((MediaQuery.of(context).size.width)*7/8)-20)/3,
+                            height : (((MediaQuery.of(context).size.width)*7/8)-20)/6,
+                            padding: const EdgeInsets.all(10.0),
+                            decoration : _shadow_2,
+                            child: Text('저장')
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
 
+                  ),
                 )
             )
         ));
