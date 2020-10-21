@@ -46,7 +46,10 @@ var _timer1 = 1;
 var _timer2 = 2;
 var _timer3 = 3;
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with TickerProviderStateMixin {
+
+  AnimationController controller;
 
   static MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     keywords: <String>['flutter', 'firebase', 'admob'],
@@ -62,6 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
     },
   );
 
+  int _counter = _default;
+
   @override
   void initState() {
     FirebaseAdMob.instance.initialize(
@@ -70,6 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
             : 'ca-app-pub-8161556053827608~5769578724'); // Android Test App ID
     bannerAd..load()..show();
     super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: _counter),
+    );
     _loadCounter();
   }
 
@@ -82,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  int _counter = _default;
+
 
   var _icon = Icons.play_arrow;
   var _color = Colors.amber;
@@ -105,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _default1() {
     setState(() {
       _default = _timer1;
+      _counter = _default;
       _reset();
     });
   }
@@ -112,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _default2() {
     setState(() {
       _default = _timer2;
+      _counter = _default;
       _reset();
     });
   }
@@ -119,6 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _default3() {
     setState(() {
       _default = _timer3;
+      _counter = _default;
       _reset();
     });
   }
@@ -221,37 +233,49 @@ class _MyHomePageState extends State<MyHomePage> {
               height: (MediaQuery.of(context).size.width)*7/8,
               margin: EdgeInsets.all(0.0),
               decoration: _shadow_1,
-              child : Column (
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children : <Widget> [
-                    SizedBox(
-                        height: (MediaQuery.of(context).size.width)*1/8
-                    ),
-                    Container(
-                      child : new Text(
-                        '$timeString',
-                        style: TextStyle(
-                          fontSize: (MediaQuery.of(context).size.width)*2/8,
-                          color: Colors.black, fontWeight: FontWeight.w300,fontFamily: "Roboto"
+              child : Stack(
+                children: [
+                  Positioned.fill(
+                    child: CustomPaint(
+                        painter: CustomTimerPainter(
+                          animation: controller,
+                          backgroundColor: Colors.white,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Column (
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children : <Widget> [
+                        SizedBox(
+                            height: (MediaQuery.of(context).size.width)*1/8
                         ),
-                      ),
-                    ),
-                    Row (
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          new IconButton(key:null, onPressed:_incrementCounterMinus,
-                            color: Colors.black,
-                            icon: Icon(Icons.remove_circle_outline),
+                        Container(
+                          child : new Text(
+                            '$timeString',
+                            style: TextStyle(
+                              fontSize: (MediaQuery.of(context).size.width)*2/8,
+                              color: Colors.black, fontWeight: FontWeight.w300,fontFamily: "Roboto"
+                            ),
                           ),
-                          new IconButton(key:null, onPressed:_incrementCounterPlus,
-                            color: Colors.black,
-                            icon: Icon(Icons.add_circle_outline),
-                          ),
-                        ]
-                    ),
-                  ]
+                        ),
+                        Row (
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              new IconButton(key:null, onPressed:_incrementCounterMinus,
+                                color: Colors.black,
+                                icon: Icon(Icons.remove_circle_outline),
+                              ),
+                              new IconButton(key:null, onPressed:_incrementCounterPlus,
+                                color: Colors.black,
+                                icon: Icon(Icons.add_circle_outline),
+                              ),
+                            ]
+                        ),
+                      ]
+                  ),
+                ],
               ),
             ),
             SizedBox(height:20),
@@ -397,30 +421,30 @@ class _MyHomePageState extends State<MyHomePage> {
       _color = Colors.grey;
       _text = '중지';
       _start();
-      // controller.reverse(
-      //     from: controller.value == 0.0
-      //         ? 1.0
-      //         : controller.value);
+      controller.reverse(
+          from: controller.value == 0.0
+              ? 1.0
+              : controller.value);
     } else {
       _icon = Icons.play_arrow;
       _color = Colors.amber;
       _text = '시작';
       _pause();
-      // controller.stop();
+      controller.stop();
     }
   }
 
   void _start() {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
-        if (_counter > 1) {
+        if (_counter > 0) {
           if (_counter == 6) {
             HapticFeedback.lightImpact();
             print('5 sec left');
           }
           _counter--;
         }
-        else if (_counter == 1) {
+        else if (_counter == 0) {
           _reset();
           HapticFeedback.vibrate();
           FlutterRingtonePlayer.playNotification();
@@ -440,7 +464,40 @@ class _MyHomePageState extends State<MyHomePage> {
         _click();
       }
       _counter = _default;
+      controller.value = 0.0 ;
     });
+  }
+}
+
+class CustomTimerPainter extends CustomPainter {
+  CustomTimerPainter({
+    this.animation,
+    this.backgroundColor,
+    this.color,
+  }) : super(repaint: animation);
+
+  final Animation<double> animation;
+  final Color backgroundColor, color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = backgroundColor
+      ..strokeWidth = 10.0
+      ..strokeCap = StrokeCap.butt
+      ..style = PaintingStyle.stroke;
+
+    canvas.drawCircle(size.center(Offset.zero), size.width / 2.0, paint);
+    paint.color = color;
+    double progress = (1.0 - animation.value) * 2 * math.pi;
+    canvas.drawArc(Offset.zero & size, math.pi * 1.5, -progress, false, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomTimerPainter old) {
+    return animation.value != old.animation.value ||
+        color != old.color ||
+        backgroundColor != old.backgroundColor;
   }
 }
 
