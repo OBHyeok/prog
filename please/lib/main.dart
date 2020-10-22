@@ -219,6 +219,27 @@ class _MyHomePageState extends State<MyHomePage>
         ]
     );
 
+    final _shadow_colored = BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Color(0xFF0EC9B0), Color(0xFF22A5FB)]),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey[500],
+              offset: Offset(4.0, 4.0),
+              blurRadius: 15.0,
+              spreadRadius: 1.0),
+          BoxShadow(
+              color: Colors.white,
+              offset: Offset(-4.0, -4.0),
+              blurRadius: 15.0,
+              spreadRadius: 1.0
+          ),
+        ]
+    );
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       // appBar: AppBar(title: Text(widget.title)),
@@ -445,7 +466,7 @@ class _MyHomePageState extends State<MyHomePage>
                           alignment: Alignment.center,
                           width : (((MediaQuery.of(context).size.width)*7/8)-20)/2,
                           height : (((MediaQuery.of(context).size.width)*7/8)-20)/4,
-                          decoration: _shadow_2,
+                          decoration: _buttonColor,
                           padding: const EdgeInsets.all(10.0),
                           child : new Text(
                             _text,
@@ -466,24 +487,83 @@ class _MyHomePageState extends State<MyHomePage>
     );
   }
 
-  var _text = '시작';
+  var _text = '휴식 시작';
+  var _buttonColor = BoxDecoration(
+      gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [Color(0xFF0EC9B0), Color(0xFF22A5FB)]),
+      borderRadius: BorderRadius.all(Radius.circular(30)),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.grey[500],
+            offset: Offset(4.0, 4.0),
+            blurRadius: 15.0,
+            spreadRadius: 1.0),
+        BoxShadow(
+            color: Colors.white,
+            offset: Offset(-4.0, -4.0),
+            blurRadius: 15.0,
+            spreadRadius: 1.0
+        ),
+      ]
+  );
+
 
   void _click() {
     _isPlaying = !_isPlaying;
 
     if (_isPlaying) {
-      _icon = Icons.pause;
-      _color = Colors.grey;
-      _text = '중지';
+      // _icon = Icons.pause;
+      // _color = Colors.grey;
+      _text = '일시정지';
+      _buttonColor = BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey[500],
+                offset: Offset(4.0, 4.0),
+                blurRadius: 15.0,
+                spreadRadius: 1.0),
+            BoxShadow(
+                color: Colors.white,
+                offset: Offset(-4.0, -4.0),
+                blurRadius: 15.0,
+                spreadRadius: 1.0
+            ),
+          ]
+      );
+      ;
       _start();
       controller.reverse(
           from: controller.value == 0.0
               ? 1.0
               : controller.value);
     } else {
-      _icon = Icons.play_arrow;
-      _color = Colors.amber;
-      _text = '시작';
+      // _icon = Icons.play_arrow;
+      // _color = Colors.amber;
+      _buttonColor = BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Color(0xFF0EC9B0), Color(0xFF22A5FB)]),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey[500],
+                offset: Offset(4.0, 4.0),
+                blurRadius: 15.0,
+                spreadRadius: 1.0),
+            BoxShadow(
+                color: Colors.white,
+                offset: Offset(-4.0, -4.0),
+                blurRadius: 15.0,
+                spreadRadius: 1.0
+            ),
+          ]
+      );
+      _text = '휴식 시작';
       _pause();
       controller.stop();
     }
