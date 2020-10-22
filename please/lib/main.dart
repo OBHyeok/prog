@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 
 
@@ -279,6 +280,13 @@ class _MyHomePageState extends State<MyHomePage>
               child : Stack(
                 children: [
                   Container(
+                      child : Positioned.fill(
+                          child : CustomPaint(
+                            painter : CustomCirle()
+                          )
+                      )
+                  ),
+                  Container(
                     // padding:EdgeInsets.all(0.0),
                     // height: ((MediaQuery.of(context).size.width)*7/8)-15,
                     // width : ((MediaQuery.of(context).size.width)*7/8)-15,
@@ -286,8 +294,8 @@ class _MyHomePageState extends State<MyHomePage>
                       child: CustomPaint(
                           painter: CustomTimerPainter(
                             animation: controller,
-                            backgroundColor: Colors.grey[500],
-                            color: Colors.grey[200],
+                            backgroundColor: Colors.grey[200],
+                            color:  Color(0x00000000),
                           )),
                     ),
                   ),
@@ -633,14 +641,28 @@ class CustomTimerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = backgroundColor
-      ..strokeWidth = 6.0
+      ..color = color
+      ..strokeWidth = 11.0
       ..strokeCap = StrokeCap.butt
       ..style = PaintingStyle.stroke
+      // ..shader = ui.Gradient.linear(
+      //   Offset(0, 0),
+      //   Offset(200, 200),
+      //   [
+      //     Color(0xFF22A5FB),
+      //     Color(0xFF0EC9B0),
+      //   ],
+      // )
+      // ..shader =  gradient.createShader(
+      //   startAngle: 3 * math.pi / 2,
+      //   endAngle: 7 * math.pi / 2,
+      //   tileMode: TileMode.repeated,
+      //   colors: [Color(0xFF0EC9B0), Color(0xFF22A5FB)],
+      // )
     ;
 
     canvas.drawCircle(size.center(Offset.zero), size.width / 2.0, paint);
-    paint.color = color;
+    paint.color = backgroundColor;
     double progress = (1.0 - animation.value) * 2 * math.pi;
     // canvas.drawShadow(path, Colors.grey.withAlpha(50), 4.0, false);
     canvas.drawArc(Offset.zero & size, math.pi * 1.5, -progress, false, paint)
@@ -652,6 +674,31 @@ class CustomTimerPainter extends CustomPainter {
     return animation.value != old.animation.value ||
         color != old.color ||
         backgroundColor != old.backgroundColor;
+  }
+}
+
+class CustomCirle extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = Color(0xFF22A5FB)
+      ..strokeWidth = 10.0
+      ..strokeCap = StrokeCap.butt
+      ..style = PaintingStyle.stroke
+      ..shader = ui.Gradient.linear(
+        Offset(0, 0),
+        Offset(200, 200),
+        [
+          Color(0xFF22A5FB),
+          Color(0xFF0EC9B0),
+        ],
+      );
+    canvas.drawCircle(size.center(Offset.zero), size.width / 2.0, paint);
+    paint.color = Color(0xFF22A5FB);
+  }
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
 
