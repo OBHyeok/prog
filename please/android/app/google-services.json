@@ -1,42 +1,35 @@
 {
   "project_info": {
-    "project_number": "142261836956",
-    "firebase_url": "https://please-81a13.firebaseio.com",
-    "project_id": "please-81a13",
-    "storage_bucket": "please-81a13.appspot.com"
+    "project_number": "636730210730",
+    "firebase_url": "https://accuraterest.firebaseio.com",
+    "project_id": "accuraterest",
+    "storage_bucket": "accuraterest.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:142261836956:android:8692f503a7c5fbd6b3e159",
+        "mobilesdk_app_id": "1:636730210730:android:7aca273fd5aa9778b493d3",
         "android_client_info": {
-          "package_name": "com.example.please"
+          "package_name": "com.studio306.accuraterest"
         }
       },
       "oauth_client": [
         {
-          "client_id": "142261836956-mcc30facdmh69f70vs38gp9sh3a6lldl.apps.googleusercontent.com",
+          "client_id": "636730210730-ov2vnq7rt3ievshvns21l7c2gicje5q4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZeYYPJEX2xGTlSWHhaUrq10qbj2fQlnE"
+          "current_key": "AIzaSyB3gR6rGllawSIBRbyFeKB53LAYWfO61qM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "142261836956-mcc30facdmh69f70vs38gp9sh3a6lldl.apps.googleusercontent.com",
+              "client_id": "636730210730-ov2vnq7rt3ievshvns21l7c2gicje5q4.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "142261836956-ou1m4n893dg6v5hjgie8maiimbl837us.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.please"
-              }
             }
           ]
         }

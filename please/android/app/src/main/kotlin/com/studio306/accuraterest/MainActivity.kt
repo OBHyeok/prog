@@ -1,4 +1,4 @@
-package com.example.please
+package com.studio306.accuraterest
 
 import io.flutter.embedding.android.FlutterActivity
 

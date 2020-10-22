@@ -534,7 +534,7 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ]
       );
-      ;
+      
       _start();
       controller.reverse(
           from: controller.value == 0.0
