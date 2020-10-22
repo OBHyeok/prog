@@ -294,8 +294,8 @@ class _MyHomePageState extends State<MyHomePage>
                       child: CustomPaint(
                           painter: CustomTimerPainter(
                             animation: controller,
-                            backgroundColor: Colors.grey[200],
-                            color:  Color(0x00000000),
+                            backgroundColor: Color(0x00000000),
+                            color: Colors.grey[200],
                           )),
                     ),
                   ),
@@ -641,7 +641,7 @@ class CustomTimerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = color
+      ..color = backgroundColor
       ..strokeWidth = 11.0
       ..strokeCap = StrokeCap.butt
       ..style = PaintingStyle.stroke
@@ -662,8 +662,8 @@ class CustomTimerPainter extends CustomPainter {
     ;
 
     canvas.drawCircle(size.center(Offset.zero), size.width / 2.0, paint);
-    paint.color = backgroundColor;
-    double progress = (1.0 - animation.value) * 2 * math.pi;
+    paint.color = color;
+    double progress = (1 - animation.value) * 2 * math.pi;
     // canvas.drawShadow(path, Colors.grey.withAlpha(50), 4.0, false);
     canvas.drawArc(Offset.zero & size, math.pi * 1.5, -progress, false, paint)
     ;
